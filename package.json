@@ -4,7 +4,8 @@
   "description": "generate redux actions reducers root",
   "license": "MIT",
   "scripts": {
-    "build": "babel src --out-dir lib"
+    "build": "babel src --out-dir lib",
+    "test": "node test.js test/index.js"
   },
   "engines": {
     "node": ">=6"
