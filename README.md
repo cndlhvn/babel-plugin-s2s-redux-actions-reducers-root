@@ -42,6 +42,14 @@ module.exports = {
   ]
 }
 ```
+
+### For React Router Redux
+If you use react-router-redux, pleaser pass a router option.
+```js
+plugin: ['s2s-redux-actions-reducers-root',
+{ input: 'src/reducers/*.js', output: "src/reducers/index.js", router: true }]
+```
+
 ## Start s2s
 
 Start the s2s with yarn command
@@ -63,6 +71,16 @@ import { combineReducers } from "redux";
 import user from "./user";
 export default combineReducers({
   user
+});
+```
+#### Case router option:
+```js
+import { combineReducers } from "redux";
+import { routerReducer } from "react-router-redux";
+import user from "./user";
+export default combineReducers({
+  user,
+  routing: routerReducer
 });
 ```
 

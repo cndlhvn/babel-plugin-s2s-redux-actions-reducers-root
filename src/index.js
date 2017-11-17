@@ -24,7 +24,7 @@ module.exports = (babel) => {
     visitor: {
       Program: {
         exit(path, state) {
-	        const { input, output } = state.opts
+	        const { input, output, router } = state.opts
 
           if (!input) {
             throw new Error('require input option')
@@ -44,13 +44,24 @@ module.exports = (babel) => {
           const imports = files
                 .map(f => defaultImport(trimDotSlash(getImportPath(output, f)), getImportPath(output, f)))
 
-          const props = files
+          let  props = files
                 .map(f => trimDotSlash(getImportPath(output, f)))
                 .map(x => t.identifier(x))
                 .map(name => t.objectProperty(name, name, false, true))
 
+          let importReduxRouter
+          if (router) {
+            importReduxRouter = createImportDeclaration('routerReducer', "react-router-redux")
+            props.push(
+              t.objectProperty(
+                t.Identifier("routing"),
+                t.Identifier("routerReducer")
+              )
+            )
+          }
           path.node.body = [
             createImportDeclaration('combineReducers', "redux"),
+            importReduxRouter,
             ...imports,
             builders.root({ OBJ: t.objectExpression(props) }),
           ]

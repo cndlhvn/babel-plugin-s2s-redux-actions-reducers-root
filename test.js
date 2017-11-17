@@ -9,7 +9,8 @@ fs.readFile(fileName, function(err, data) {
   var out = babel.transform(src, {
     plugins: [['./lib/index.js',{
       input: 'test/*.js',
-      output: 'test/index.js'
+      output: 'test/index.js',
+      router: true
     }]]
   });
   console.log(out.code);
