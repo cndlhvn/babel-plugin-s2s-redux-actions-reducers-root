@@ -1,6 +1,6 @@
 {
   "name": "babel-plugin-s2s-redux-actions-reducers-root",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "generate redux actions reducers root",
   "license": "MIT",
   "scripts": {

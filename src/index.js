@@ -9,7 +9,7 @@ import {
 } from 's2s-utils'
 
 const builders = {
-  root: template(`export default history => {combineReducers(OBJ)}`)
+  root: template(`export default history => combineReducers(OBJ)`)
 }
 
 function trimDotSlash(path) {
