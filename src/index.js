@@ -9,7 +9,7 @@ import {
 } from 's2s-utils'
 
 const builders = {
-  root: template(`export default combineReducers(OBJ)`)
+  root: template(`export default history => {combineReducers(OBJ)}`)
 }
 
 function trimDotSlash(path) {
@@ -51,11 +51,11 @@ module.exports = (babel) => {
 
           let importReduxRouter
           if (router) {
-            importReduxRouter = createImportDeclaration('routerReducer', "react-router-redux")
+            importReduxRouter = createImportDeclaration('connectRouter', 'connected-react-router')
             props.push(
               t.objectProperty(
-                t.Identifier("routing"),
-                t.Identifier("routerReducer")
+                t.Identifier('router'),
+                t.Identifier('connectRouter(history)')
               )
             )
           }
